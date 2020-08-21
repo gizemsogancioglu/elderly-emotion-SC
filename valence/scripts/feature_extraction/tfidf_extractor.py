@@ -32,4 +32,4 @@ def write_TFIDF_features(df, file_path):
     X_vector = normalize_text_data(df)
     df2 = pd.DataFrame(X_vector.toarray())
     df2.to_csv(file_path, index=False)
-    return
+    return df2

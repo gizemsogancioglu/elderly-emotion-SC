@@ -1,13 +1,12 @@
 import pandas as pd
 import numpy as np
-import re
 import os
 import json
 import nltk
 from nltk.stem import WordNetLemmatizer
 from tqdm import tqdm
 #import stats
-import valence.feature_extraction.stats as stats
+import valence.scripts.feature_extraction.stats as stats
 
 lemmatizer = WordNetLemmatizer()
 

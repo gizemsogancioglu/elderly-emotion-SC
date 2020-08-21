@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-import valence.feature_extraction.SentiWordNet as sentiwordnet
 
 if __name__ == '__main__':
 
@@ -12,7 +11,7 @@ if __name__ == '__main__':
 
 	# Add statistics 
 	print('\nAdding statistics')
-	SentiWordNet_stats = sentiwordnet.add_stats_from_list(SentiWordNet_scores)
+	SentiWordNet_stats = SentiWordNet.add_stats_from_list(SentiWordNet_scores)
 	drop_col = ['scores_pos_SentiWordNet', 'scores_neg_SentiWordNet']
 	SentiWordNet_stats = SentiWordNet_stats.drop(drop_col, axis=1)
 	SentiWordNet_stats.to_csv(os.path.join(score_path, 'personality_traits_dict_stats_training.csv'), index=None)

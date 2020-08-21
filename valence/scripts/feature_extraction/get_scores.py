@@ -1,11 +1,11 @@
 import pandas as pd
 import os
-import valence.feature_extraction.SentiWordNet as sentiwordnet
+
 
 def write_senti_scores(data, split, text_column):
 	# Get dictionary scores
 	print('SentiWordNet')
-	SentiWordNet_scores = sentiwordnet.get_scores(data, text_column, SentiWordNet_dict, negation=True)
+	SentiWordNet_scores = SentiWordNet.get_scores(data, text_column, SentiWordNet_dict, negation=True)
 
 	# Remove unnecessary columns
 	drop_col = ['id', 'text']
@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
 	print('SentiWordNet')
 	SentiWordNet_path = os.path.join(ROOT, 'dictionaries')
-	SentiWordNet_dict = sentiwordnet.load(SentiWordNet_path)
+	SentiWordNet_dict = SentiWordNet.load(SentiWordNet_path)
 
 	write_senti_scores(transcription_training, "training", "text")
 	write_senti_scores(transcription_validation, "validation", "text")
