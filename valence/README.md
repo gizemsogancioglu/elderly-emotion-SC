@@ -1,14 +1,38 @@
 # elderly-emotion-SC
+
 ## Description
 This project contains the scripts for our entry in the Elderly Emotion Sub-Challenge which is part of the INTERSPEECH 2020 Computational Paralinguistics Challenge (ComParE)
 
+    .
+    ├── scripts                    # source 
+    │   ├── feature_extraction     # scripts that perform feature extraction
+    │   ├── valence_classifier.py  # Main module
+    │   └── ...                
+    └── data
+      │   ├── raw_data             # should contain challenge dataset
+      │   ├── features             # linguistic features
+      │   ├── models               # trained linguistic models
+      │   └── predictions          # contains dev/test preds as an output of valence_classifier
+      
+        
+> If features (fasttext*.csv, polarity*.csv, dict*.csv, TFIDF*.csv) and models (bows*.pkl, dict*.pkl, ft_polarity*.pkl) folders contain required data, then 
+feature extraction and model training stages will be skipped. 
+If empty, valence_classifier script will extract all by using data/raw_data/data.csv)    
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
 ## Installation
 Recommended (Optional) :
-`conda create --name YOUR_ENV_NAME python=3.8` 
-`conda activate YOUR_ENV_NAME` 
+```bash
+$ conda create --name YOUR_ENV_NAME python=3.8
+$ conda activate YOUR_ENV_NAME
+``` 
 
 Project can be installed simply with the following command. 
-`python setup.py install`
+```bash
+python setup.py install
+```
 
 ## ISSUES
 ### Done:

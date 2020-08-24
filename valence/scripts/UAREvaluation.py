@@ -57,7 +57,7 @@ def ensemble_different_models(features, features_descr, y):
         y_test = y[1] if exp == 'dev' else None
         while f < len(features_descr):
             while i < num_models:
-                clf = joblib.load("source/models/" + features_descr[f] + "_fold" + str(i) + ".pkl")
+                clf = joblib.load("data/models/" + features_descr[f] + "_fold" + str(i) + ".pkl")
                 clf_pred.append(clf.predict(features[f][x_index]))
                 i += 1
             i = 0
@@ -72,11 +72,11 @@ def ensemble_different_models(features, features_descr, y):
         ensemble_pred = majority_voting_pred([majority_pred["ft_polarity"], majority_pred["bows"], majority_pred["dict"]],
                                            weight_index=0)
         if exp == "dev":
-            pd.DataFrame(ensemble_pred).to_csv("source/predictions/fold4_dev_predictions.csv")
+            pd.DataFrame(ensemble_pred).to_csv("data/predictions/fold4_dev_predictions.csv")
             print("DEVEL SCORE: (Majority voting) score of the ensemble model (Fasttext+Polarity - TFIDF - Dictionary) "
                   "on blind set: ", evaluate(ensemble_pred, y_test))
         else:
-            pd.DataFrame(ensemble_pred).to_csv("source/predictions/test_predictions.csv")
+            pd.DataFrame(ensemble_pred).to_csv("data/predictions/test_predictions.csv")
     return ensemble_pred
 
 def tune_on_devset(X_train, y_train, X_devel, y_devel):
@@ -120,7 +120,7 @@ def evaluate(y_pred, y):
 
 def k_fold_cv(X, y, feature_desc):
     # since fold 4 will be used as a blind set and not part of training, it is removed from fold_ids list.
-    fold_ids = pd.read_csv("source/data/CV_fold_ids_trval.csv")['FoldID'][0:132]
+    fold_ids = pd.read_csv("data/raw_data/CV_fold_ids_trval.csv")['FoldID'][0:132]
     ps = PredefinedSplit(fold_ids)
     fold_id = 0
     y = y[valence_classifier.label_type]
@@ -128,6 +128,6 @@ def k_fold_cv(X, y, feature_desc):
         X_train, X_test = X.iloc[train_index], X.iloc[test_index]
         y_train, y_test = y[train_index], y[test_index]
         clf = tune_on_devset(X_train, y_train, X_test, y_test)
-        joblib.dump(clf, "source/models/" + feature_desc + "_fold" + str(fold_id) + '.pkl')
+        joblib.dump(clf, "data/models/" + feature_desc + "_fold" + str(fold_id) + '.pkl')
         fold_id += 1
     return

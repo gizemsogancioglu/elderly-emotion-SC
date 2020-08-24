@@ -19,9 +19,9 @@ def extract_features():
     ### COMPUTE TFIDF Feature Vectorizer ###
     features = []
     feature_descr = ['ft_polarity', 'bows', 'dict']
-    source_path = "source/features/"
+    source_path = "data/features/"
     if not os.path.isfile(source_path+'fasttext_features.csv'):
-        print("Fasttext features are not in the expected source/features folder.. We will extract them now.. ")
+        print("Fasttext features are not in the expected data/features folder.. We will extract them now.. ")
         ### Fasttext Feature Extractor ###
         fasttext_extractor.write_fasttext_features(raw_data["machine_translation"],
           source_path+ "fasttext_features.csv")
@@ -33,7 +33,7 @@ def extract_features():
     fasttext = fill_partitions(fasttext_features)
 
     if not os.path.isfile(source_path+'polarity_features.csv'):
-        print("Polarity features are not in the expected source/features folder.. We will extract them now.. ")
+        print("Polarity features are not in the expected data/features folder.. We will extract them now.. ")
         polarity_extractor.write_sentiment_features(raw_data['machine_translation'],
                                                     source_path)
 
@@ -51,7 +51,7 @@ def extract_features():
     features.append(ft_polarity)
 
     if not os.path.isfile(source_path+'TFIDF_features.csv'):
-        print("TFIDF features are not in the expected source/features folder.. We will extract them now.. ")
+        print("TFIDF features are not in the expected data/features folder.. We will extract them now.. ")
         tfidf_extractor.write_TFIDF_features(raw_data['machine_translation'], source_path+"TFIDF_features.csv")
     bows_features = pd.concat(
         [raw_data[['partition', 'FoldID']], pd.read_csv(source_path+"TFIDF_features.csv", sep=",").
@@ -70,21 +70,21 @@ def extract_features():
         dict = normalize_data(fill_partitions(dict_features))
 
     else:
-        print("Dictionary features are not in the expected source/features folder.. We will extract them now.. ")
+        print("Dictionary features are not in the expected data/features folder.. We will extract them now.. ")
     features.append(dict)
 
     return (features, feature_descr)
 
 def train_models(features, features_descr):
-    file_list = os.listdir("source/models")
+    file_list = os.listdir("data/models")
     i = 0
     while i < len(features):
         num_models = [filename for filename in file_list if filename.startswith(features_descr[i])]
         if len(num_models) != 3:
-            print(features_descr[i] + " models are not located under the source/models folder.. Training starts.. ")
+            print(features_descr[i] + " models are not located under the data/models folder.. Training starts.. ")
             UAREvaluation.k_fold_cv(features[i][0], y[0], features_descr[i])
         else:
-            print(features_descr[i] + " models are already located in the source/models folder.")
+            print(features_descr[i] + " models are already located in the data/models folder.")
         i += 1
     return
 
@@ -112,9 +112,9 @@ def fill_partitions(df):
 #def translate_transcriptions():
 
 if __name__ == "__main__":
-    # Read raw data and predefined fold ids assigned per story.
-    fold_ids = pd.read_csv("source/data/CV_fold_ids_trval.csv").reset_index(drop=True)
-    raw_data = pd.concat([pd.read_excel(Path('source/data/data.xlsx'), index_col=0).reset_index(drop=True), fold_ids], axis=1)
+    # Read raw raw_data and predefined fold ids assigned per story.
+    fold_ids = pd.read_csv("data/raw_data/CV_fold_ids_trval.csv").reset_index(drop=True)
+    raw_data = pd.concat([pd.read_excel(Path('data/raw_data/raw_data.xlsx'), index_col=0).reset_index(drop=True), fold_ids], axis=1)
 
     # translate transcriptions into English
     # translate_transcriptions()
