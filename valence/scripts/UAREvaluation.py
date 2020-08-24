@@ -1,7 +1,7 @@
 from sklearn.svm import SVC
 from sklearn.metrics import recall_score
 from sklearn.model_selection import PredefinedSplit
-from sklearn.externals import joblib
+import joblib
 import pandas as pd
 from valence.scripts import valence_classifier
 from collections import Counter

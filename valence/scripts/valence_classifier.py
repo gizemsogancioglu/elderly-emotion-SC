@@ -27,7 +27,7 @@ def extract_features():
           source_path+ "fasttext_features.csv")
 
     fasttext_features = pd.concat([raw_data[['partition', 'FoldID']], pd.read_csv(
-        source_path+ "fasttext_features.csv",
+        source_path + "fasttext_features.csv",
         sep=",").reset_index(drop=True)],
                                   axis=1)
     fasttext = fill_partitions(fasttext_features)
@@ -35,11 +35,11 @@ def extract_features():
     if not os.path.isfile(source_path+'polarity_features.csv'):
         print("Polarity features are not in the expected source/features folder.. We will extract them now.. ")
         polarity_extractor.write_sentiment_features(raw_data['machine_translation'],
-                                                    source_path, 'story-level')
+                                                    source_path)
 
     polarity_features = pd.concat([raw_data[['partition', 'FoldID']],
-                                   pd.read_csv(source_path+"polarity_features.csv",sep=",").
-                                  reset_index(drop=True)], axis=1).drop(columns='ID_story')
+                                   pd.read_csv(source_path+"polarity_features.csv", sep=",").
+                                  reset_index(drop=True)], axis=1)
     polarity = fill_partitions(polarity_features)
     polarity = normalize_data(polarity)
 
