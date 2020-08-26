@@ -13,6 +13,7 @@ This project contains the scripts for our entry in the Elderly Emotion Sub-Chall
       │   ├── features             # linguistic features
       │   ├── models               # trained linguistic models
       │   └── predictions          # contains dev/test preds as an output of valence_classifier
+    └── get_model_resources.sh     # (Optional) script to download trained models and locate them into data/models folder
       
         
 > If features (fasttext*.csv, polarity*.csv, dict*.csv, TFIDF*.csv) and models (bows*.pkl, dict*.pkl, ft_polarity*.pkl) folders contain required data, then 
