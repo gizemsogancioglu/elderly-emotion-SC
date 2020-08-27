@@ -13,13 +13,15 @@ This project contains the scripts for our entry in the Elderly Emotion Sub-Chall
       │   ├── features             # linguistic features
       │   ├── models               # trained linguistic models
       │   └── predictions          # contains dev/test preds as an output of valence_classifier
-    └── get_model_resources.sh     # (Optional) script to download trained models and locate them into data/models folder
+    └── download_model_resources.sh     # (Optional) script to download trained models and locate them into data/models folder
+    └── download_fasttext_model.sh     # (Optional) script to download fine-tuned fasttext model and locate it into data/models folder
       
         
 > If features (fasttext*.csv, polarity*.csv, dict*.csv, TFIDF*.csv) and models (bows*.pkl, dict*.pkl, ft_polarity*.pkl) folders contain required data, then 
 feature extraction and model training stages will be skipped. 
 If empty, valence_classifier script will extract all by using data/raw_data/data.csv)    
 
+Trained models and fine-tuned fasttext models can be downloaded by running the scripts as mentioned above. In case of any technical difficulty, resources are located in `https://bitbucket.org/gizemsogancioglu/model-resources/src/master/` and can be downloaded from the repo and located to data/models folder manually.  
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
