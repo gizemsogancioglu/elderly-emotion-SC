@@ -39,7 +39,7 @@ def extract_features():
 
     polarity_features = pd.concat([raw_data[['partition', 'FoldID']],
                                    pd.read_csv(source_path+"polarity_features.csv", sep=",").
-                                  reset_index(drop=True)], axis=1)
+                                  reset_index(drop=True)], axis=1).drop(columns=['ID_story'])
     polarity = fill_partitions(polarity_features)
     polarity = normalize_data(polarity)
 
@@ -114,7 +114,7 @@ def fill_partitions(df):
 if __name__ == "__main__":
     # Read raw raw_data and predefined fold ids assigned per story.
     fold_ids = pd.read_csv("data/raw_data/CV_fold_ids_trval.csv").reset_index(drop=True)
-    raw_data = pd.concat([pd.read_excel(Path('data/raw_data/raw_data.xlsx'), index_col=0).reset_index(drop=True), fold_ids], axis=1)
+    raw_data = pd.concat([pd.read_excel(Path('data/raw_data/data.xlsx'), index_col=0).reset_index(drop=True), fold_ids], axis=1)
 
     # translate transcriptions into English
     # translate_transcriptions()
