@@ -13,5 +13,5 @@ This project contains the scripts for our entry in the Elderly Emotion Sub-Chall
     │   ├── valence_classifier.py  # Main module of the project. 
     └── arousal                    # Matlab project for the arousal prediction [0-2] of the elderly speech data. Please see arousal/README.md for the details. 
 
-* Paper: Is Everything Fine, Grandma? Acoustic and Linguistic Modeling for Robust Elderly Speech Emotion Recognition, Gizem Sogancioglu, Oxana Verkholyak, Heysem Kaya, Dmitrii Fedotov, Tobias Cadee, Albert Ali Salah, Alexey Karpov    
+* Paper: Sogancıoglu, Gizem, et al. "Is Everything Fine, Grandma? Acoustic and Linguistic Modeling for Robust Elderly Speech Emotion Recognition." INTERSPEECH, Shanghai, China (2020). (https://www.isca-speech.org/archive/Interspeech_2020/pdfs/3160.pdf)    
 * For more information or any problems, please contact: gizemsogancioglu@gmail.com
