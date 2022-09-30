@@ -59,7 +59,7 @@ setup(
                    ],
     install_requires=['pandas>= 1.1.1 ',
                       'scikit-learn==0.22.2.post1',
-                      'joblib==0.16.0',
+                      'joblib==1.2.0',
                       'fasttext>= 0.9.2',
                       'textblob>= 0.15.3',
                       'flair',
